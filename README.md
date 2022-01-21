@@ -8,16 +8,22 @@ The server listen on the adress `0.0.0.0:8254`.
 
 ### API
 
-#### `/`
+#### Route `/`
 
-Tell if the server is up, always return a string
+Tell if the server is up, always return a string.
 
-#### `/alert/`
+#### Route `/alert/`
 
 To manage an alert
 
-#### `/alerts/`
+##### Method `POST`
+
+Use the `POST` http method to post a new alert.
+
+#### Route `/alerts/`
 
 To manage alerts.
 
-- Only the HTTP `GET` request work
+##### Method `GET`
+
+Use the `GET` http method to get the list of all request.
