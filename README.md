@@ -18,4 +18,6 @@ To manage an alert
 
 #### `/alerts/`
 
-To manage alerts
+To manage alerts.
+
+- Only the HTTP `GET` request work
