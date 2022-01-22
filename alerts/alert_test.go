@@ -1,7 +1,6 @@
 package alerts
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -143,7 +142,6 @@ func TestNewAlert(t *testing.T) {
 			)
 		}
 
-		fmt.Printf("%#v\n", test.expected)
 		if test.expected != got {
 			t.Errorf(
 				"Test: %s failed, expected %+v, but got %+v",
