@@ -1,6 +1,7 @@
 package alerts
 
 import (
+	"errors"
 	"time"
 )
 
@@ -10,17 +11,24 @@ type Alert struct {
 	UserID   string `json:"user_id"`
 	Date     string `json:"date"` // Date with format YYYY-MM-DD (ISO-8601)
 	Name     string `json:"name"`
-	MaxPrice int    `json:"max_price"`
-	MinPrice int    `json:"min_price"`
+	MinPrice int    `json:"min_price,omitempty"`
+	MaxPrice int    `json:"max_price,omitempty"`
 	City     string `json:"city"`
 }
 
+var InvalidPriceRange = errors.New("Max price is lower than min price")
+
 // NewAlert create an alert
-func NewAlert(id, userID, date, name string, maxP, minP int, city string) (Alert, error) {
+func NewAlert(id, userID, date, name string, minP, maxP int, city string) (Alert, error) {
 	// Validate the date
 	_, err := time.Parse("2006-01-02", date)
 	if err != nil {
 		return Alert{}, err
+	}
+
+	// Validate price range
+	if maxP < minP {
+		return Alert{}, InvalidPriceRange
 	}
 
 	return Alert{

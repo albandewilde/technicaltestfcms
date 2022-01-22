@@ -1,6 +1,7 @@
 package alerts
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -10,8 +11,8 @@ func TestNewAlert(t *testing.T) {
 		UserID   string
 		Date     string
 		Name     string
-		MaxPrice int
 		MinPrice int
+		MaxPrice int
 		City     string
 	}
 	cases := []struct {
@@ -21,7 +22,7 @@ func TestNewAlert(t *testing.T) {
 		fields      fields
 	}{
 		{
-			name: "Create a simple new alrte",
+			name: "Create a simple new alert",
 			expected: Alert{
 				"id",
 				"userId",
@@ -84,6 +85,42 @@ func TestNewAlert(t *testing.T) {
 				"Nantes",
 			},
 		},
+		{
+			name:        "Max price is lower than min price",
+			expected:    Alert{},
+			expectedErr: "Max price is lower than min price",
+			fields: fields{
+				"id",
+				"userId",
+				"1970-01-01",
+				"an alert",
+				10,
+				0,
+				"Nantes",
+			},
+		},
+		{
+			name: "Equal prices",
+			expected: Alert{
+				"id",
+				"userId",
+				"1970-01-01",
+				"an alert",
+				10,
+				10,
+				"Nantes",
+			},
+			expectedErr: "Max price is lower than min price",
+			fields: fields{
+				"id",
+				"userId",
+				"1970-01-01",
+				"an alert",
+				10,
+				10,
+				"Nantes",
+			},
+		},
 	}
 
 	for _, test := range cases {
@@ -92,8 +129,8 @@ func TestNewAlert(t *testing.T) {
 			test.fields.UserID,
 			test.fields.Date,
 			test.fields.Name,
-			test.fields.MaxPrice,
 			test.fields.MinPrice,
+			test.fields.MaxPrice,
 			test.fields.City,
 		)
 
@@ -106,6 +143,7 @@ func TestNewAlert(t *testing.T) {
 			)
 		}
 
+		fmt.Printf("%#v\n", test.expected)
 		if test.expected != got {
 			t.Errorf(
 				"Test: %s failed, expected %+v, but got %+v",
