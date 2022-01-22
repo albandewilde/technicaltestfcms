@@ -16,7 +16,8 @@ type Alert struct {
 	City     string `json:"city"`
 }
 
-var InvalidPriceRange = errors.New("Max price is lower than min price")
+// ErrInvalidPriceRange is returned when the min price is higher than the max price
+var ErrInvalidPriceRange = errors.New("Max price is lower than min price")
 
 // NewAlert create an alert
 func NewAlert(id, userID, date, name string, minP, maxP int, city string) (Alert, error) {
@@ -28,7 +29,7 @@ func NewAlert(id, userID, date, name string, minP, maxP int, city string) (Alert
 
 	// Validate price range
 	if maxP < minP {
-		return Alert{}, InvalidPriceRange
+		return Alert{}, ErrInvalidPriceRange
 	}
 
 	return Alert{
