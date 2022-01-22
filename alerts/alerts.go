@@ -32,3 +32,28 @@ func (as *Alerts) List(uname string) ([]Alert, error) {
 
 	return alerts, nil
 }
+
+// IsPresent check if an user is persent
+func (as *Alerts) IsPresent(uname string) bool {
+	as.mtx.Lock()
+	defer as.mtx.Unlock()
+
+	_, ok := as.usersAlerts[uname]
+
+	return ok
+}
+
+// AddAlert to the list ok alerts and the user if doesn't exist
+func (as *Alerts) AddAlert(a Alert) {
+	as.mtx.Lock()
+	defer as.mtx.Unlock()
+
+	alerts, ok := as.usersAlerts[a.UserID]
+	if !ok {
+		alerts = make([]Alert, 0)
+	}
+
+	alerts = append(alerts, a)
+
+	as.usersAlerts[a.UserID] = alerts
+}
