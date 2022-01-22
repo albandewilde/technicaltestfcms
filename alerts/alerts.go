@@ -14,6 +14,11 @@ type Alerts struct {
 // ErrUserNotFound is returned when listinf alerts of a non existing user
 var ErrUserNotFound = errors.New("User not found")
 
+// NewAlerts create the structure from the alerts and the user it belongs to
+func NewAlerts(as map[string][]Alert) Alerts {
+	return Alerts{usersAlerts: as}
+}
+
 // List alerts that belongs to an user
 func (as *Alerts) List(uname string) ([]Alert, error) {
 	as.mtx.Lock()
