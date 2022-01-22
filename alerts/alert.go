@@ -1,5 +1,9 @@
 package alerts
 
+import (
+	"time"
+)
+
 // Alert represent an alert
 type Alert struct {
 	ID       string `json:"id"` // Should be an UUID
@@ -12,7 +16,13 @@ type Alert struct {
 }
 
 // NewAlert create an alert
-func NewAlert(id, userID, date, name string, maxP, minP int, city string) Alert {
+func NewAlert(id, userID, date, name string, maxP, minP int, city string) (Alert, error) {
+	// Validate the date
+	_, err := time.Parse("2006-01-02", date)
+	if err != nil {
+		return Alert{}, err
+	}
+
 	return Alert{
 		ID:       id,
 		UserID:   userID,
@@ -21,5 +31,5 @@ func NewAlert(id, userID, date, name string, maxP, minP int, city string) Alert 
 		MaxPrice: maxP,
 		MinPrice: minP,
 		City:     city,
-	}
+	}, nil
 }
