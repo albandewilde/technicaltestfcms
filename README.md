@@ -6,6 +6,14 @@ Technical test from [here](https://gist.github.com/rbretecher-fcms/9e10fbc8418cf
 
 The server listen on the adress `0.0.0.0:8254`.
 
+### Start the server
+
+There is two way to start the server, natively with Go or in a container with Docker.
+
+To run the server natively use the command `make run`. You'll need to have at least Go 1.17 installed.
+
+To run the server in a container use the command `make ctn-run`. You'll need to have docker installed.
+
 ### API
 
 #### Route `/`
