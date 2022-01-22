@@ -22,11 +22,11 @@ func main() {
 }
 
 func init() {
-	a0, _ := alerts.NewAlert("a", "bob", "0000-00-00", "alrt1", 0, 10, "Nantes")
-	a1, _ := alerts.NewAlert("b", "bob", "0000-00-00", "alrt2", 1, 50, "Orléans")
-	a2, _ := alerts.NewAlert("c", "alice", "0000-00-00", "my_alerte", 100, 1000, "Paris")
-	a3, _ := alerts.NewAlert("d", "alice", "0000-00-00", "my second alerte", 5, 5, "Rennes")
-	a4, _ := alerts.NewAlert("e", "alice", "0000-00-00", "my third", 4, 9, "Lyon")
+	a0, _ := alerts.NewAlert("a", "bob", "0001-01-01", "alrt1", 0, 10, "Nantes")
+	a1, _ := alerts.NewAlert("b", "bob", "0001-01-01", "alrt2", 1, 50, "Orléans")
+	a2, _ := alerts.NewAlert("c", "alice", "0001-01-01", "my_alerte", 100, 1000, "Paris")
+	a3, _ := alerts.NewAlert("d", "alice", "0001-01-01", "my second alerte", 5, 5, "Rennes")
+	a4, _ := alerts.NewAlert("e", "alice", "0001-01-01", "my third", 4, 9, "Lyon")
 
 	as := alerts.NewAlerts(
 		map[string][]alerts.Alert{

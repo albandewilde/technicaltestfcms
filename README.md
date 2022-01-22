@@ -26,4 +26,32 @@ To manage alerts.
 
 ##### Method `GET`
 
-Use the `GET` http method to get the list of all request.
+Use the `GET` http method to get the list of all alerts of an user. The body with a json string is required to be the username.
+
+Ex:  
+Http `GET` request with url `/alerts/` and body:
+```json
+"bob"
+```
+Will return a json like follow:
+```json
+[
+	{
+		"id": "a",
+		"user_id": "bob",
+		"date": "0001-01-01",
+		"name": "alrt1",
+		"max_price": 10,
+		"city": "Nantes"
+	},
+	{
+		"id": "b",
+		"user_id": "bob",
+		"date": "0001-01-01",
+		"name": "alrt2",
+		"min_price": 1,
+		"max_price": 50,
+		"city": "Orléans"
+	}
+]
+```
