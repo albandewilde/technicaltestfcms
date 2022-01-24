@@ -32,14 +32,14 @@ Ex:
 Http `POST` request with url `/alert/` and body:
 ```json
 {
-		"user_id": "bob",
-		"name": "my_alerte",
-		"min_price": 100,
-		"max_price": 1000,
-		"city": "Paris"
+    "user_id": "bob",
+    "name": "my_alerte",
+    "min_price": 100,
+    "max_price": 1000,
+    "city": "Paris"
 }
 ```
-Willn't return any thing except an http code.
+Willn't return nothing except an http code.
 
 #### Route `/alerts/`
 
